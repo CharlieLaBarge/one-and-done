@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve myproject
+After=network.target
+
+[Service]
+User=vagrant
+Group=www-data
+WorkingDirectory=/home/vagrant/myproject
+Environment="PATH=/home/vagrant/myproject/myprojectenv/bin"
+ExecStart=/home/vagrant/myproject/myprojectenv/bin/gunicorn wsgi:app -b 127.0.0.1:8000
+
+[Install]
+WantedBy=multi-user.target
